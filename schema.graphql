@@ -1,0 +1,22 @@
+interface Node {
+  id: ID!
+}
+
+type Article implements Node {
+  id: ID!
+  title: String!
+  body: String!
+}
+
+type Video implements Node {
+  id: ID!
+  title: String!
+  url: String!
+}
+
+union SearchResult = Article | Video
+
+type Query {
+  node: Node!
+  search(query: String!): [SearchResult!]!
+}
