@@ -19,7 +19,9 @@
   "scripts": {
     "build": "tsc -p tsconfig.build.json",
     "dev": "npm run build && node bin/example-command.js",
-    "gen": "relay-compiler",
+    "gen": "run-s -c gen:*",
+    "gen:relay": "./node_modules/relay-compiler/cli.js",
+    "gen:graphql-codegen": "graphql-codegen",
     "lint": "run-s -c lint:*",
     "lint:tsc": "tsc",
     "lint:eslint": "eslint .",
@@ -28,7 +30,10 @@
   },
   "prettier": "@mizdra/prettier-config-mizdra",
   "devDependencies": {
+    "@graphql-codegen/cli": "^5.0.0",
+    "@graphql-codegen/typescript": "^4.0.1",
     "@mizdra/eslint-config-mizdra": "^2.0.0",
+    "@mizdra/graphql-fabbrica": "^0.1.0",
     "@mizdra/prettier-config-mizdra": "^1.0.0",
     "@tsconfig/node18": "^1.0.1",
     "@tsconfig/strictest": "^2.0.0",

@@ -1,22 +1,19 @@
 interface Node {
   id: ID!
 }
-
-type Article implements Node {
+type Book implements Node {
   id: ID!
   title: String!
-  body: String!
+  author: Author!
 }
-
-type Video implements Node {
+type Author implements Node {
   id: ID!
-  title: String!
-  url: String!
+  name: String!
+  books: [Book!]!
 }
-
-union SearchResult = Article | Video
-
+union SearchResult = Book | Author
 type Query {
-  node: Node!
+  book(id: ID!): Book
+  node(id: ID!): Node
   search(query: String!): [SearchResult!]!
 }
